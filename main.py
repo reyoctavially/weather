@@ -1,9 +1,20 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # <center>Interactive Data Visualization in Python With Bokeh</center>
+
+# ## Adding Interaction
+
+# In[1]:
+
 # import library yang dibutuhkan
 import datetime
 from os.path import dirname, join
 import numpy as np
 import pandas as pd
 from scipy.signal import savgol_filter
+
+# In[2]:
 
 # Import modul bokeh
 from bokeh.io import curdoc
@@ -13,6 +24,8 @@ from bokeh.plotting import figure
 
 # Memilih kolom yang digunakan yaitu temp, min, dan max
 STATISTICS = ['temp', 'min', 'max']
+
+# In[3]:
 
 
 def get_dataset(src, name, distribution):  # Membaca data dari dataset
@@ -146,6 +159,8 @@ slider_zoom = Slider(title='Zoom', start=-12, end=8, value=0, step=1)
 zoom_value = slider_zoom.value
 last_value = None
 
+# In[4]:
+
 # Update data dengan menggunakan fitur select
 slider_zoom.on_change('value', update_zoom)
 country_select.on_change('value', update_plot)
@@ -155,3 +170,13 @@ controls = column(country_select, distribution_select, slider_zoom)
 
 curdoc().add_root(row(plot, controls))
 curdoc().title = "Data Cuaca Tahun 2020"
+
+# In[5]:
+
+
+# bokeh serve --show myapp.py
+
+
+# For more on all things interaction in Bokeh, [**Adding Interactions**](https://docs.bokeh.org/en/latest/docs/user_guide/interaction.html) in the Bokeh User Guide is a great place to start.
+
+# In[ ]:
